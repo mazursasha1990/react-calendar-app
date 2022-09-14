@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  .right-section {
+    display: flex;
+
+    .data-block {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

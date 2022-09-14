@@ -1,0 +1,48 @@
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  background-color: rgb(143, 143, 143);
+  padding: 1px;
+
+  .calendar-ceil {
+    min-height: 80px;
+    margin: 1px;
+    padding: 5px;
+    background-color: white;
+    font-size: small;
+
+    .calendar-ceil-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .calendar-ceil-header-not-current {
+      @extend .calendar-ceil-header;
+      color: rgb(188, 188, 188);
+    }
+  }
+
+  .calendar-ceil-current-day {
+    @extend .calendar-ceil;
+    background-color: rgb(228 243 221);
+  }
+
+  .calendar-ceil-weekend {
+    @extend .calendar-ceil;
+    background-color: rgb(243, 245, 245);
+  }
+
+  .events {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    .event-title {
+      background-color: #bebbbb;
+      border-radius: 2px;
+      list-style: none;
+    }
+  }
+}
