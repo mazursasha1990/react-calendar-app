@@ -11,7 +11,11 @@ const EventForm = ({
   event,
   setEvent,
 }) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
   const id = uuidv4();
   const createdTime = moment().format('DD MM YYYY HH:mm ');
@@ -78,9 +82,10 @@ const EventForm = ({
                 value={event.title}
                 {...register('title', {
                   onChange: (e) => changeEventHandler(e.target.value, 'title'),
-                  required: true,
+                  required: 'Title is required',
                 })}
               />
+              <p className='error-message'>{errors.title?.message}</p>
             </label>
             <label>
               <span> Description</span>
@@ -90,6 +95,7 @@ const EventForm = ({
                 {...register('description', {
                   onChange: (e) =>
                     changeEventHandler(e.target.value, 'description'),
+                  required: false,
                 })}
               />
             </label>
@@ -105,9 +111,15 @@ const EventForm = ({
                 value={event.date}
                 {...register('date', {
                   onChange: (e) => changeEventHandler(e.target.value, 'date'),
-                  required: true,
+                  required: 'Date is required',
+                  pattern: {
+                    value:
+                      /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.](19|20)[0-9]{2}$/,
+                    message: 'Date should be in format dd.mm.yyyy',
+                  },
                 })}
               />
+              <p className='error-message'>{errors.date?.message}</p>
             </label>
             <label>
               <span> Begin time</span>
@@ -118,6 +130,7 @@ const EventForm = ({
                 value={event.time}
                 {...register('time', {
                   onChange: (e) => changeEventHandler(e.target.value, 'time'),
+                  required: false,
                 })}
               />
             </label>
@@ -157,13 +170,17 @@ const EventForm = ({
                 placeholder='Title goes here'
                 name='title'
                 {...register('title', {
-                  required: true,
+                  required: 'Title is required',
                 })}
               />
+              <p className='error-message'>{errors.title?.message}</p>
             </label>
             <label>
               <span> Description</span>
-              <textarea name='description' {...register('description', {})} />
+              <textarea
+                name='description'
+                {...register('description', { required: false })}
+              />
             </label>
           </div>
 
@@ -174,8 +191,16 @@ const EventForm = ({
                 type='text'
                 placeholder='Date'
                 name='date'
-                {...register('date', { required: true })}
+                {...register('date', {
+                  required: 'Date is required',
+                  pattern: {
+                    value:
+                      /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.](19|20)[0-9]{2}$/,
+                    message: 'Date should be in format dd.mm.yyyy',
+                  },
+                })}
               />
+              <p className='error-message'>{errors.date?.message}</p>
             </label>
             <label>
               <span> Begin time</span>
@@ -183,7 +208,7 @@ const EventForm = ({
                 type='time'
                 placeholder='Time'
                 name='time'
-                {...register('time', {})}
+                {...register('time', { required: false })}
               />
             </label>
           </div>
