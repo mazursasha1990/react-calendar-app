@@ -115,7 +115,7 @@ const EventForm = ({
                   pattern: {
                     value:
                       /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.](19|20)[0-9]{2}$/,
-                    message: 'Date should be in format dd.MM.yyyy',
+                    message: 'Date should be in format dd.mm.yyyy',
                   },
                 })}
               />
@@ -196,7 +196,7 @@ const EventForm = ({
                   pattern: {
                     value:
                       /^(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.](19|20)[0-9]{2}$/,
-                    message: 'Date should be in format dd.MM.yyyy',
+                    message: 'Date should be in format dd.mm.yyyy',
                   },
                 })}
               />
